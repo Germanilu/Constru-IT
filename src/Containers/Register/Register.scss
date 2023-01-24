@@ -1,0 +1,32 @@
+@import '../../../global.scss';
+
+
+.registerDesign{
+    width: 100%;
+    height: 100vh;
+    background-color: lightblue;
+    @include flex()
+}
+
+.registerBlock{
+    width: 50%;
+    height: 50%;
+    background-color: lightskyblue;
+    @include flex();
+    flex-direction: column;
+}
+
+.registerInput{
+    width: 50%;
+    height: 100%;
+    background-color: white;
+    display: grid;
+    grid-template-columns: repeat(2,auto);
+    grid-template-rows: repeat(auto,auto);
+    gap: 1em;
+}
+
+.inputBlock{
+    width: 100%;
+    height: max-content;
+}
