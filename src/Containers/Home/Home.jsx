@@ -1,7 +1,5 @@
-import { Container, Row, Col } from "react-bootstrap";
-import Button from 'react-bootstrap/Button';
-
-import user from "../img/user.png";
+import "./Home.scss"
+import user from "../img/backg.jpg";
 
 function Home () {
 
