@@ -16,8 +16,10 @@ const Register = () => {
 
     //Verification for the password
     const [passwordVerification, setPasswordVerification] = useState()
-    //Register attempt message Hook
+    //Register attempt message 
     const [outputAttempt, setOutputAttempt] = useState();
+    //Role selected 
+    const [roleSelected, setRoleSelected] = useState();   
 
     //Iterate userData and assign to each key the current value
     const updateUserData = (data) => {
@@ -26,14 +28,7 @@ const Register = () => {
 
     //Attempt to register the user
     const registerUser = async() => {
-
-        //This will search in userData.value and if empty string, return error
-        Object.values(userData).forEach((value) => {
-            if(value.length === 0){
-                setOutputAttempt("Tienes que rellenar todos los campos")
-            }
-        })
-
+        //Validations
         //Regular Expression
         //Email
         if (!userData.email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)) {
@@ -51,17 +46,41 @@ const Register = () => {
             return;
         }
 
-        
+        //This will search in userData.value and if empty string, return error
+        Object.values(userData).forEach((value) => {
+            if(value.length === 0){
+                setOutputAttempt("Tienes que rellenar todos los campos")
+                return;
+            }
+        })
+
+        //Checking if user select role 
+        if(roleSelected === "none"){
+            setOutputAttempt("Tienes que seleccionar un tipo de usuario")
+            return;
+        }
+       
         try {
-            const attempt = await axios.post("https://bbobras.onrender.com/api/auth/projectManagerSignIn",userData)
-            if(attempt.status === 200){
-                console.log("Registrado!")
-                // setTimeout(() => {
-                //     window.location.reload()
-                // }, 2000);
+            if(roleSelected === "projectManager"){
+                const attempt = await axios.post("https://bbobras.onrender.com/api/auth/projectManagerSignIn",userData)
+                if(attempt.status === 200){
+                    setOutputAttempt("Registrado Correctamente")
+                    // setTimeout(() => {
+                    //     window.location.reload()
+                    // }, 2000);
+                }
+            }else if(roleSelected === "client"){
+                const attempt = await axios.post("https://bbobras.onrender.com/api/auth/clientSignIn",userData)
+                if(attempt.status === 200){
+                    setOutputAttempt("Registrado Correctamente")
+                    // setTimeout(() => {
+                    //     window.location.reload()
+                    // }, 2000);
+                }
             }
         } catch (error) {
             setOutputAttempt(error.response.data.message)
+            console.log(error.response.data.message)
         }
     }
 
@@ -103,7 +122,17 @@ const Register = () => {
                     </div>
                     <div className="inputBlock">
                         <p>Repite la Password:</p>
-                        <input type="text" name='password' title='password' onChange={e => setPasswordVerification(e.target.value)} />
+                        <input type="text" onChange={e => setPasswordVerification(e.target.value)} />
+                    </div>                    
+                    {/* //Seleccion de role */}
+                    <div className="inputBlock">
+                        <p>Usuario</p>
+                        <select onChange={e => setRoleSelected(e.target.value)}>
+                            <option value="none">Selecciona una opcion</option>
+                            <option value="client">Cliente</option>
+                            <option value="projectManager">Project Manager</option>
+                        </select>
+                        
                     </div>                    
                 </div>
                     <div className="messageError">{outputAttempt}</div>
