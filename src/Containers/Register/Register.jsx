@@ -19,17 +19,36 @@ const Register = () => {
     //Register attempt message 
     const [outputAttempt, setOutputAttempt] = useState();
     //Role selected 
-    const [roleSelected, setRoleSelected] = useState();   
+    const [roleSelected, setRoleSelected] = useState("none");   
 
     //Iterate userData and assign to each key the current value
     const updateUserData = (data) => {
         setUserData({...userData, [data.target.name]: data.target.value})
     }
-
+    
     //Attempt to register the user
     const registerUser = async() => {
-        //Validations
-        //Regular Expression
+        
+        /*VALIDATIONS*/
+        //Check empty inputs and return error if any
+        let inputs = [
+            'name',
+            'surname',
+            'nif',
+            'mobile',
+            'address',
+            "businessName",
+            'email',
+            'password',
+        ];
+        for (let value of inputs) {
+            if (userData[value] === '') {
+                setOutputAttempt("Tienes que rellenar todos los datos");
+                return;
+            }
+        }
+
+        /*REGULAR EXPRESSION*/
         //Email
         if (!userData.email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)) {
             setOutputAttempt("Inserta un email valido");
@@ -45,21 +64,13 @@ const Register = () => {
             setOutputAttempt("Las contraseñas no coinciden");
             return;
         }
-
-        //This will search in userData.value and if empty string, return error
-        Object.values(userData).forEach((value) => {
-            if(value.length === 0){
-                setOutputAttempt("Tienes que rellenar todos los campos")
-                return;
-            }
-        })
-
+        
         //Checking if user select role 
         if(roleSelected === "none"){
             setOutputAttempt("Tienes que seleccionar un tipo de usuario")
             return;
         }
-       
+
         try {
             if(roleSelected === "projectManager"){
                 const attempt = await axios.post("https://bbobras.onrender.com/api/auth/projectManagerSignIn",userData)
@@ -80,7 +91,6 @@ const Register = () => {
             }
         } catch (error) {
             setOutputAttempt(error.response.data.message)
-            console.log(error.response.data.message)
         }
     }
 
@@ -127,12 +137,11 @@ const Register = () => {
                     {/* //Seleccion de role */}
                     <div className="inputBlock">
                         <p>Usuario</p>
-                        <select onChange={e => setRoleSelected(e.target.value)}>
+                        <select  onChange={e => setRoleSelected(e.target.value)}>
                             <option value="none">Selecciona una opcion</option>
                             <option value="client">Cliente</option>
                             <option value="projectManager">Project Manager</option>
                         </select>
-                        
                     </div>                    
                 </div>
                     <div className="messageError">{outputAttempt}</div>
