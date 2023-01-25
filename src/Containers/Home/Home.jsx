@@ -1,12 +1,26 @@
-import React from 'react';
+import { Container, Row, Col } from "react-bootstrap";
+import Button from 'react-bootstrap/Button';
 
-const Home = () => {
-    return(
-        <div>
-        <div>Hola Mundo</div>
-        <h1>Constru-IT</h1>
-        </div>
-    );
+import user from "../img/user.png";
+
+function Home () {
+
+  return (
+    <section >
+      <div>
+        <button>Log-in</button>
+      </div>
+
+      <div>
+      <h1>Contru-IT</h1>
+            <p>
+              lorem ipsimasd asd asd s
+            </p>
+
+            <img src={user} alt="" />
+      </div>
+    </section>
+  )
 }
 
 export default Home;
