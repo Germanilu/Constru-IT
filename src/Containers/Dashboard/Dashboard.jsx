@@ -3,12 +3,12 @@ import { userData } from "../../Features/userSlice";
 
 const Dashboard = () => {
 
-    const credentials = useSelector(userData);
-    console.log(credentials)
+    const userInfo = useSelector(userData);
+    console.log(userInfo)
 
 
     return(
-        <div>Bienvenido! {credentials.user_name} </div>
+        <div>Bienvenido! {userInfo.user_name} </div>
     )
 }
 

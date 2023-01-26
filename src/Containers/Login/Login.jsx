@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Login.scss";
 
-import { useDispatch} from "react-redux";
-import {loginUser} from "../../Features/userSlice";
+import { useDispatch, useSelector} from "react-redux";
+import {loginUser, userData} from "../../Features/userSlice";
+import { useNavigate } from "react-router-dom";
 
 
 const Login = () => {
@@ -13,8 +14,15 @@ const Login = () => {
     });
 
     const [outputAttempt, setOutputAttempt] = useState();
-
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const userInfo = useSelector(userData)
+
+    useEffect(() => {
+        if(userInfo.token !== ""){
+            navigate('/dashboard')
+        }
+    })
 
     //Iterate credentials and set new input data
     const updateCredentials = (data) => {
