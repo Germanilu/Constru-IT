@@ -25,7 +25,6 @@ export const userSlice = createSlice({
 //Login 
 export const loginUser = (data, setOutputAttempt) => async(dispatch) => {
     try {
-        console.log("R",data)
         const user = await axios.post("https://bbobras.onrender.com/api/auth/login", data);
         let decode = jwt(user.data.token)
         if(user.status === 200){
