@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import "./Login.scss";
+
+import { useDispatch} from "react-redux";
+import {loginUser} from "../../Features/userSlice";
+
+
 const Login = () => {
 
     const [credentials,setCredentials] = useState({
@@ -7,17 +12,23 @@ const Login = () => {
         password: ""
     });
 
+    const dispatch = useDispatch();
+
     //Iterate credentials and set new input data
     const updateCredentials = (data) => {
         setCredentials({...credentials,[data.target.name]: data.target.value})
     }
 
-    const attemptLogin = async() => {
-        try {
-            console.log(credentials)
-        } catch (error) {
-            console.log(error)
+    const attemptLogin = () => {
+        //Regular expression to validate email
+        if (! /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(credentials.email)) {
+            console.log(" Introduci un'email valida ");
+            return;
         }
+
+        dispatch(loginUser({email:credentials.email, password: credentials.password}))
+        
+        
     }
 
     return(
@@ -25,7 +36,7 @@ const Login = () => {
             <div className="loginInputs">
             <input type="text" name="email" title="email" onChange={updateCredentials}/>
             <input type="text" name="password" title="password" onChange={updateCredentials} />
-            <button onClick={() => attemptLogin()}>Login</button>
+            <button type="submit" onClick={() => attemptLogin()}>Login</button>
             </div>
         </div>
     );
