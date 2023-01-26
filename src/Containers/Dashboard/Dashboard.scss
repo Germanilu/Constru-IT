@@ -1,0 +1,55 @@
+@import '../../../global.scss';
+.dashboardDesign{
+    background-color: cyan;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 1em;
+}
+
+.logoutButton{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.sideBarContainer{
+    width: 80%;
+    height: 75%;
+    @include flex()
+}
+
+.chatComponentContaine{
+    width: 15%;
+    height: 75%;
+    border: 1px solid black;
+}
+
+.sideBarMenu{
+    width: 15%;
+    height: 100%;
+    background-color: #fff;
+    border-right: 2px solid black;
+    
+}
+
+.renderContainer{
+    width: 85%;
+    height: 100%;
+    background-color: #fff;
+    
+}
+
+.sideBarSelectionContainer{
+    margin-top: 1em;
+    width: 100%;
+    height: 30%;
+    // border: 1px solid black;
+    @include flex();
+    flex-direction: column;
+
+
+}
+
