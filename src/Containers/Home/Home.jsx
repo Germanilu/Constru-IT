@@ -1,5 +1,5 @@
 import "./Home.scss"
-import user from "../img/backg.jpg";
+import user from "../../img/backg.jpg";
 
 function Home () {
 
