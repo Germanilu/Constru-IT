@@ -1,3 +1,5 @@
+@import '../../../global.scss';
+
 section {
   background: linear-gradient(rgba(65, 65, 65, 0.5), rgba(0, 0, 0, 0.5)), url("../../img/backg.jpg");
   background-position: center;
@@ -7,7 +9,7 @@ section {
 	background-color: transparent;
 }
 
-button {
+.login-nav {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-weight: 800;
   width: 200px;
@@ -29,13 +31,21 @@ button {
   align-items: center;
 }
 
+.logo {
+  width: 10%;
+}
+
 .intro-txt h1 {
-  font-size: 100px;
+  font-size: 70px;
+  color: #fff;
 }
 
 .intro-txt p {
-  font-size: 50px;
-  margin-bottom: 200px;
+  font-size: 20px;
+  margin-bottom: 50px;
+  color: #fff;
+  width: 50%;
+  text-align: center;
 }
 
 .info-user {
@@ -70,9 +80,7 @@ button {
 }
 
 .scroll-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex();
   color: #fff;
   font-size: 50px;
 }

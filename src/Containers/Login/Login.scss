@@ -3,14 +3,94 @@
 .loginDesign{
     width: 100%;
     height: 100vh;
-    background-color: black;
+    background-image: linear-gradient(to bottom, #ffe400, #eecb00, #dbb400, #c89d00, #b48700);
     @include flex()
 }
 
 .loginInputs{
-    width: 50%;
-    height: 50%;
-    background-color: white;
+    
+    width: 25%;
+    height: 70%;
+    border-radius: 10px;
+    background-color: #2f2f2f;
+    color: #fff;
     @include flex();
     flex-direction: column;
+    box-shadow: 10px 15px 5px #7c7000;
+}
+
+.loginInputs input {
+    background-color: transparent;
+    margin-bottom: 20px;
+    height: 50px;
+    width: 60%;
+    border: none;
+    border-radius: 5px;
+    border-bottom: 3px solid #ffe400;
+    transition: .3s;
+}
+
+.loginLogo {
+    @include flex();
+}
+
+.logo-login {
+    width: 10%;
+    margin-right: 15px;
+}
+
+.loginInputs input:hover {
+    background-color: rgba(95, 95, 95, 0.882);
+    margin-bottom: 20px;
+    height: 50px;
+    width: 60%;
+    border: none;
+    border-bottom: 3px solid #ffe400;
+}
+
+.login-home {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    width: 200px;
+    height: 60px;
+    background-color: rgba(95, 95, 95, 0.882);
+    color:  #ffe400;;
+    font-family: 'Roboto';
+    font-size: 15px;
+    font-weight: 800;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: .3s ease all;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-home::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #e4ce00;
+    position: absolute;
+    z-index: 1;
+    top: -60px;
+    left: 0;
+    transition: .3s ease-in-out;
+}
+
+.login-home span {
+    position: relative;
+    z-index: 2;
+    transition: .3s ease all;
+}
+
+.login-home:hover::after{
+    top: 0;
+}
+
+.login-home:hover {
+    color: black;
 }

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Login.scss";
 
+import logo from "../../img/logo.png";
+
 import { useDispatch, useSelector} from "react-redux";
 import {loginUser, userData} from "../../Features/userSlice";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +14,7 @@ const Login = () => {
         email: "",
         password: ""
     });
-
+    
     const [outputAttempt, setOutputAttempt] = useState();
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -41,11 +43,17 @@ const Login = () => {
 
     return(
         <div className="loginDesign">
+            
             <div className="loginInputs">
-            <input type="text" name="email" title="email" onChange={updateCredentials}/>
-            <input type="text" name="password" title="password" onChange={updateCredentials} />
+            <div className="loginLogo">
+                <img className="logo-login" src={logo}/>
+                <h1>Constru-IT</h1>
+            </div>
+            <h1>Ingresar</h1>
+            <input type="text" name="email" title="email" placeholder="Escribe tu email" onChange={updateCredentials}/>
+            <input type="text" name="password" title="password" placeholder="Contraseña" onChange={updateCredentials} />
             {outputAttempt}
-            <button type="submit" onClick={() => attemptLogin()}>Login</button>
+            <button className="login-home btn1" type="submit" onClick={() => attemptLogin()}><span>Accede</span></button>
             </div>
         </div>
     );
