@@ -2,6 +2,8 @@ import "./Home.scss"
 import user from "../../img/user.png";
 import tasks from "../../img/tasks.png";
 import building from "../../img/building.png";
+import logo from "../../img/logo.png";
+import Login from "../Login/Login";
 
 
 function Home () {
@@ -9,13 +11,17 @@ function Home () {
   return (
     <section >
       <div className="navbar">
-        <button>Log-in</button>
+        <button className="login-nav">Log-in</button>
       </div>
 
       <div className="intro-txt">
+          <img className="logo" src={logo} />
           <h1>Constru-IT</h1>
             <p>
-              lorem ipsimasd asd asd s
+             Con Constru-IT es posible conocer el estado de obras, comparar 
+             proyectos, controlar gastos e inventarios, administrar a los técnicos y 
+             operarios. Permite, además, un exhaustivo seguimiento de obras con 
+             evaluaciones en cada etapa del proceso brindando información al cliente.
             </p>
       </div>
 
@@ -42,6 +48,10 @@ function Home () {
 
       <div className="scroll-button">
         <h1>V</h1>
+      </div>
+
+      <div>
+        <Login></Login>
       </div>
 
     </section>
