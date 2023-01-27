@@ -15,7 +15,7 @@ function Home () {
       </div>
 
       <div className="intro-txt">
-          <img className="logo" src={logo} />
+          <img className="logo" src={logo} alt="logo" />
           <h1>Constru-IT</h1>
             <p>
              Con Constru-IT es posible conocer el estado de obras, comparar 
