@@ -6,56 +6,85 @@ import "./Chat.scss"
 
 const Chat = () => {
 
-    const [chats, setChats] = useState({})
-
-    console.log(chats)
+    const [businessChat, setBusinessChats] = useState({})
+    const [workerChats, setWorkerChats] = useState({});
+    
     //Const
     const userInfo = useSelector(userData);
 
+    console.log(userInfo.user_role)
     useEffect(() => {
-       getChat()
+        getChat()
     },[])
 
-
+    
     const getChat = async() => {
         try {
             let config = {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             };
             const attempt = await axios.get("https://bbobras.onrender.com/api/getallchats",config);
-            console.log(attempt)
             if(attempt.status === 200){
-                console.log("hola",attempt.data.data[0].clientId)
-                setChats(attempt.data.data)
+                setBusinessChats(attempt.data.data )
+                setWorkerChats(attempt.data.allChatsE)
             }
+            
         } catch (error) {
             console.log(error)
         }
     }
 
-    return(
-        <div className="chatDesign">
-
-            {chats.length > 0 && (
-                chats.map(e => {
-                    return(
-                        <div key={e.id}>
-                            <div className="chatRow">
-                                <div className="chatName">
-                                {e.clientId} 
-                                </div>
-                                <div className="chatDate">
-                                    {e.date}
-                                </div>
-                            </div>
-                        </div>
+    //If user is PM
+    if(userInfo.user_role === "63c6963759433440683992f3"){
+        return(
+            <div className="chatDesign">
+            <div className="businessChatsContainer">
+                <div>Clientes</div>
+            {
+                    businessChat.length > 0 && (
+                       businessChat.map((e) => {
+                            return(
+                                <div className="chatRow" key={e._id}>{e.clientName}</div>
+                            )
+                        })
                     )
-                })
-            )}
+                }
+            </div>
+            <div className="workChatsContainer">
+            <div>Empleados</div>
+            {
+                    workerChats.length > 0 && (
+                       workerChats.map((e) => {
+                            return(
+                                <div className="chatRow" key={e._id}>{e.employeeName}</div>
+                            )
+                        })
 
-
+                    )
+                }
+            </div>
         </div>
-    )
+        )
+        //If user is Client or Employee
+    }else if (userInfo.user_role === "63c6963759433440683992f2" || userInfo.user_role === "63c6963759433440683992f4"){
+        return(
+            <div className="chatDesign">
+            <div className="businessChatsContainer">
+            <div>ProjectManager</div>
+            {
+                    businessChat.length > 0 && (
+                       businessChat.map((e) => {
+                            return(
+                                <div className="chatRow" key={e._id}>{e.projectManagerName}</div>
+                            )
+                        })
+
+                    )
+                }
+            </div>
+        </div>
+        )
+    }
 }
 
 export default Chat;

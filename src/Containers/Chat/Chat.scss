@@ -1,11 +1,23 @@
 .chatDesign{
     width: 100%;
     height: 100%;
-    background-color: green;
+    background-color: rgb(255, 255, 255);
 }
 
 .chatRow{
     width: 100%;
     height: 50px;
     background-color: white;
+}
+
+.businessChatsContainer{
+    width: 100%;
+    height: max-content;
+    background-color: rgba(241, 241, 241, 0.582);
+}
+
+.workChatsContainer{
+    width: 100%;
+    height: max-content;
+    background-color: rgb(255, 255, 255);
 }
