@@ -12,7 +12,6 @@ const Chat = () => {
     //Const
     const userInfo = useSelector(userData);
 
-    console.log(userInfo.user_role)
     useEffect(() => {
         getChat()
     },[])
