@@ -73,7 +73,12 @@ const Dashboard = () => {
       <div className="chatbuttonContainer"><ChatButton showChats={chatInteraction}/></div>
       <div className="chatsContainer">
         {/* Sending hook to chatWindow with chat info */}
-        <ChatWindow openWindow={openWindow}></ChatWindow>
+        {
+          openWindow.open?<ChatWindow openWindow={openWindow}></ChatWindow>:null
+        }
+        
+        
+        
       </div>
     </div>
   );
