@@ -42,20 +42,20 @@ const Login = () => {
     }
 
     return(
-        <div className="loginDesign">
+        <section className="loginDesign" id="login">
             
             <div className="loginInputs">
             <div className="loginLogo">
                 <img className="logo-login" src={logo} alt="logo"/>
                 <h1>Constru-IT</h1>
             </div>
-            <h1>Ingresar</h1>
+            <h1>Bienvenido/a</h1>
             <input type="text" name="email" title="email" placeholder="Escribe tu email" onChange={updateCredentials}/>
             <input type="text" name="password" title="password" placeholder="Contraseña" onChange={updateCredentials} />
             {outputAttempt}
-            <button className="login-home btn1" type="submit" onClick={() => attemptLogin()}><span>Accede</span></button>
+            <button className="login-home btn1" type="submit" onClick={() => attemptLogin()}><span>Ingresar</span></button>
             </div>
-        </div>
+        </section>
     );
 }
 
