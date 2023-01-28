@@ -9,9 +9,9 @@ import Login from "../Login/Login";
 function Home () {
 
   return (
-    <section >
+    <section className="home-page">
       <div className="navbar">
-        <button className="login-nav">Log-in</button>
+        <a href="#login"><button className="login-nav"><span>Log-in</span></button></a>
       </div>
 
       <div className="intro-txt">
