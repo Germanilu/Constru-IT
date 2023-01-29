@@ -14,11 +14,11 @@ const Chat = ({selectedChat}) => {
 
     
     useEffect(() => {
-        
+        getChat()
     },[])
 
     useEffect(() => {
-        getChat()
+        
     })
 
     //Get all the available chat for the user
@@ -31,14 +31,13 @@ const Chat = ({selectedChat}) => {
             if(attempt.status === 200){
                 setBusinessChats(attempt.data.data )
                 setWorkerChats(attempt.data.allChatsE)
+                console.log("AQUI",attempt)
             }
             
         } catch (error) {
             console.log(error)
         }
     }
-
-
 
     //If user is PM
     if(userInfo.user_role === "63c6963759433440683992f3"){

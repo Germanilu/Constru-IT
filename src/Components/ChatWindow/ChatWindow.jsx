@@ -1,10 +1,37 @@
-import "./ChatWindow.scss"
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { userData } from "../../Features/userSlice";
+import axios from "axios";
+import "./ChatWindow.scss"
 const ChatWindow = ({openWindow, setOpenWindow}) => {
+    console.log(openWindow.chatInfo._id)
 
+    const [loadMessage, setLoadMessage] = useState([])
     //Const
-  const userInfo = useSelector(userData);
+    const userInfo = useSelector(userData);
+
+    useEffect(() => {
+        loadMessageInChat()
+    },[]);
+
+    useEffect(() => {
+        
+    })
+
+    const loadMessageInChat = async() => {
+        try {
+            let config = {
+                headers: { Authorization: `Bearer ${userInfo.token}` }
+            };
+            const attempt = await axios.get(`https://bbobras.onrender.com/api/messages/${openWindow.chatInfo._id}`,config)
+            if(attempt.status === 200){
+                setLoadMessage(attempt.data.data)
+                console.log(attempt.data.data)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
 
     return (
@@ -20,7 +47,19 @@ const ChatWindow = ({openWindow, setOpenWindow}) => {
                 <div className="closeChatWindow" onClick={() => setOpenWindow({open: false})}>X</div>
             </div>
             <div className="bodyChatWindow">
-                Call to load messages
+                {
+                    loadMessage.map(e => {
+                        return(
+                            <div className="bodyChatWindowResult" key={e._id}>
+                                <div className="bodyChatWindowName">{e.userName + " " + e.userSurname}</div>
+                                <div className="bodyChatWindowMessageContainer">
+                                    <div className="bodyChatWindowDate">{e.date}</div>
+                                    <div className="bodyChatWindowMessage">{e.message}</div>
+                                </div>
+                            </div>
+                        );
+                    })
+                }
             </div>
             <div className="inputChatWindow">
                 <textarea type="text" className="inputMessageChatWindow" placeholder="Escribe un mensaje..."/>

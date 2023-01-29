@@ -34,7 +34,40 @@
 .bodyChatWindow{
     width: 100%;
     height: 55%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    //To enable scroll
+    overflow: scroll;
+    background-color: red;
 }
+.bodyChatWindowResult{
+    width: 100%;
+    height: max-content;
+    // min-height: 80%;
+    @include flex();
+    flex-direction: column;
+    border: 1px solid blue;
+}
+.bodyChatWindowName{
+    width: 100%;
+    height: max-content;
+    background-color: white;
+    margin-top: 1em;
+}
+.bodyChatWindowMessageContainer{
+    width: 100%;
+    height: max-content;
+    @include flex();
+    flex-direction: row-reverse;
+    background-color: green;
+}
+.bodyChatWindowDate{
+    width: 20%;
+    height: max-content;
+    font-size: 0.1em;
+}
+
 
 //Input text to write message in chat
 .inputChatWindow{
