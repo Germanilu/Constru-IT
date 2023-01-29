@@ -16,7 +16,7 @@ const Dashboard = () => {
   const [openChat, setOpenChat] = useState(false)  
   const [openWindow, setOpenWindow] = useState({
     open: false,
-    id: ""
+    chatInfo: ""
   })
 
   //Const
@@ -40,8 +40,7 @@ const Dashboard = () => {
 
   //Function send to chat.jsx as prop to set idChast on setOpenWindow Hook
   const selectedChat = (chatId) => {
-    setOpenWindow({open: !openWindow.open, id:chatId})
-    console.log(openWindow)
+    setOpenWindow({open: !openWindow.open, chatInfo:chatId})
 }
 
   return (
