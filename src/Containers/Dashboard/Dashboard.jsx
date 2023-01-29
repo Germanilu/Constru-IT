@@ -75,7 +75,7 @@ const Dashboard = () => {
       <div className="chatsContainer">
         {/* Sending hook to chatWindow with chat info */}
         {
-          openWindow.open?<ChatWindow openWindow={openWindow}></ChatWindow>:null
+          openWindow.open?<ChatWindow openWindow={openWindow} setOpenWindow={setOpenWindow}></ChatWindow>:null
         }
         
         
