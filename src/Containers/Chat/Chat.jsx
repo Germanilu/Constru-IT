@@ -14,8 +14,12 @@ const Chat = ({selectedChat}) => {
 
     
     useEffect(() => {
-        getChat()
+        
     },[])
+
+    useEffect(() => {
+        getChat()
+    })
 
     //Get all the available chat for the user
     const getChat = async() => {
