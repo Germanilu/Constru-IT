@@ -17,7 +17,7 @@ const Dashboard = () => {
   const [openWindow, setOpenWindow] = useState({
     open: false,
     id: ""
-})
+  })
 
   //Const
   const userInfo = useSelector(userData);
@@ -33,6 +33,7 @@ const Dashboard = () => {
     }
   });
 
+  //This function show and hide the chat
   const chatInteraction = () => {
     setOpenChat(!openChat)
   }

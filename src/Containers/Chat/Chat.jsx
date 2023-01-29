@@ -58,7 +58,7 @@ const Chat = ({selectedChat}) => {
                     workerChats.length > 0 && (
                        workerChats.map((e) => {
                             return(
-                                <div className="chatRow" key={e._id}>{e.employeeName}</div>
+                                <div className="chatRow" key={e._id} onClick={() => selectedChat(e._id) }>{e.employeeName}</div>
                             )
                         })
 
@@ -77,7 +77,7 @@ const Chat = ({selectedChat}) => {
                     businessChat.length > 0 && (
                        businessChat.map((e) => {
                             return(
-                                <div className="chatRow" key={e._id}>{e.projectManagerName}</div>
+                                <div className="chatRow" key={e._id} onClick={() => selectedChat(e._id) }>{e.projectManagerName}</div>
                             )
                         })
 
