@@ -96,9 +96,6 @@ const renderDependingOnRole = () => {
         {
           openWindow.open?<ChatWindow openWindow={openWindow} setOpenWindow={setOpenWindow}></ChatWindow>:null
         }
-        
-        
-        
       </div>
     </div>
   );

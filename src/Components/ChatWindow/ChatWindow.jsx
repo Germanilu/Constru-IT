@@ -51,11 +51,11 @@ const ChatWindow = ({openWindow, setOpenWindow}) => {
                     loadMessage.map(e => {
                         return(
                             <div className="bodyChatWindowResult" key={e._id}>
-                                <div className="bodyChatWindowName">{e.userName + " " + e.userSurname}</div>
-                                <div className="bodyChatWindowMessageContainer">
+                                <div className="bodyChatWindowHeader">
+                                    <div className="bodyChatWindowName">{e.userName + " " + e.userSurname}</div>
                                     <div className="bodyChatWindowDate">{e.date}</div>
-                                    <div className="bodyChatWindowMessage">{e.message}</div>
                                 </div>
+                                <div className="bodyChatWindowMessage">{e.message}</div>
                             </div>
                         );
                     })

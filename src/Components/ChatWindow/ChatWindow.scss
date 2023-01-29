@@ -1,14 +1,15 @@
 @import '../../../global.scss';
 .chatWindowDesign{
-    width: 25%;
+    width: 30%;
     height: 100%;
     background-color: rgb(255, 255, 255);
+    border: 1px solid black;
 }
 
 //Chat Header Design
 .headerChatWindow{
     width: 100%;
-    height: 15%;
+    height: 10%;
     @include flex();
     justify-content: left;
 }
@@ -33,52 +34,54 @@
 //Body chat Window to show previouse messages
 .bodyChatWindow{
     width: 100%;
-    height: 55%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+    height: 65%;
     //To enable scroll
-    overflow: scroll;
-    background-color: red;
-}
-.bodyChatWindowResult{
-    width: 100%;
-    height: max-content;
-    // min-height: 80%;
-    @include flex();
-    flex-direction: column;
-    border: 1px solid blue;
-}
-.bodyChatWindowName{
-    width: 100%;
-    height: max-content;
-    background-color: white;
-    margin-top: 1em;
-}
-.bodyChatWindowMessageContainer{
-    width: 100%;
-    height: max-content;
-    @include flex();
-    flex-direction: row-reverse;
-    background-color: green;
-}
-.bodyChatWindowDate{
-    width: 20%;
-    height: max-content;
-    font-size: 0.1em;
+    overflow: auto;
+    background-color: whitesmoke;
+    margin-top: 0.5em;
 }
 
+
+.bodyChatWindowResult{
+    width: 100%;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    border-bottom: 0.1em solid black;
+    @include flex();
+    flex-direction: column;
+}
+
+.bodyChatWindowHeader{
+    width: 95%;
+    @include flex();
+    justify-content: space-between;
+    gap: 0.5em;
+    margin-bottom: 1em;
+}
+
+.bodyChatWindowName{
+    border-bottom: 1px solid rgb(121, 121, 121);
+}
+
+.bodyChatWindowDate{
+    font-size: 0.8em;
+}
+
+.bodyChatWindowMessage{
+    width: 95%;
+}
 
 //Input text to write message in chat
 .inputChatWindow{
     width: 100%;
-    height: 20%;
-    @include flex()
+    height: 15%;
+    @include flex();
+    margin-top: 0.5em;
 }
 
 .inputMessageChatWindow{
     width: 95%;
-    height: 80%;
+    height: 90%;
     resize: none;
 }
 
@@ -86,7 +89,7 @@
 //Footer chat Window
 .footerBarChatWindow{
     width: 100%;
-    height: 10%;
+    height: 5%;
     @include flex();
     justify-content: right;
 }
