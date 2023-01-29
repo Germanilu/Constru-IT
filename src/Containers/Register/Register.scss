@@ -1,32 +1,139 @@
 @import '../../../global.scss';
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300&display=swap');
 
 
 .registerDesign{
     width: 100%;
     height: 100vh;
-    background-color: lightblue;
-    @include flex()
+    background-image: linear-gradient(to bottom, #ffe400, #eecb00, #dbb400, #c89d00, #b48700);
+    @include flex();
+    
 }
 
 .registerBlock{
-    width: 50%;
-    height: 50%;
-    background-color: lightskyblue;
-    @include flex();
+    height: 90%;
+    border-radius: 0px;
+    background-color: #2f2f2f;
+    display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 .registerInput{
     width: 50%;
-    height: 100%;
-    background-color: white;
+    margin: 40px;
     display: grid;
     grid-template-columns: repeat(2,auto);
     grid-template-rows: repeat(auto,auto);
-    gap: 1em;
+    gap: 2em;
+
 }
 
 .inputBlock{
     width: 100%;
     height: max-content;
+}
+
+.inputBlock p{
+    color: rgb(181, 181, 181);
+    font-family: 'Prompt';
+    margin: 5px;
+}
+
+.inputBlock input{
+    background-color: transparent;
+    border: none;
+    height: 30px;
+    border-bottom: 3px solid #ffe400;
+    color: #fff;
+    transition: .3s;
+    font-family: 'Prompt';
+    font-size: 15px;
+}
+
+.inputBlock input:hover{
+    background-color: rgb(81, 81, 81);
+    border: none;
+    border-bottom: 3px solid #ffe400;
+}
+
+.inputBlock select{
+    background-color: transparent;
+    border: none;
+    height: 30px;
+    color: #ffe400;
+    border-bottom: 3px solid #ffe400;
+    transition: .3s;
+}
+
+.inputBlock select{
+    height: 30px;
+    font-family: 'Prompt';
+    font-size: 15px;
+    transition: .3s;
+    background-color: rgb(81, 81, 81);
+}
+
+.inputBlock select:hover {
+    background-color: rgb(81, 81, 81);
+}
+
+.registerImg {
+     width: 500px; 
+     height: 90%; 
+     background: linear-gradient(rgba(255, 230, 0, 0.461), rgba(255, 238, 163, 0)), url("../../img/register-img.jpg"); 
+     background-position: center;
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+}
+
+.registerButton {
+    @include flex();
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    background-color: rgba(95, 95, 95, 0.882);
+    color:  #ffe400;;
+    font-family: 'Roboto';
+    font-size: 15px;
+    font-weight: 800;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: .3s ease all;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.registerButton::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom, #ffe400, #eecb00, #dbb400, #c89d00, #b48700);
+    position: absolute;
+    z-index: 1;
+    top: -60px;
+    left: 0;
+    transition: .3s ease-in-out;
+}
+
+.registerButton span {
+    position: relative;
+    z-index: 2;
+    transition: .3s ease all;
+}
+
+.registerButton:hover::after{
+    top: 0;
+}
+
+.registerButton:hover {
+    color: black;
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Register.scss'
 import axios from 'axios'
+
 const Register = () => {
     //Hooks
     const [userData, setUserData] = useState({
@@ -96,56 +97,58 @@ const Register = () => {
 
     return(
         <div className='registerDesign'>
+            <div className="registerImg"></div>
             <div className="registerBlock">
                 <div className="registerInput">
                     <div className="inputBlock">
-                        <p>Nombre:</p>
-                        <input type="text" name='name' title='name' onChange={updateUserData} />
+                        <p>Nombre completo:</p>
+                        <input type="text" name='name' title='name' placeholder='Escribe tu nombre' onChange={updateUserData} />
                     </div>
                     <div className="inputBlock">
-                        <p>Apellido:</p>
-                        <input type="text" name='surname' title='surname' onChange={updateUserData} />
+                        <p>Apellidos:</p>
+                        <input type="text" name='surname' title='surname' placeholder='Escribe tu apellido' onChange={updateUserData} />
                     </div>
                     <div className="inputBlock">
                         <p>NIF:</p>
-                        <input type="text" name='nif' title='nif' onChange={updateUserData} />
+                        <input type="text" name='nif' title='nif' placeholder='Escribe tu NIF' onChange={updateUserData} />
                     </div>
                     <div className="inputBlock">
                         <p>Telefono:</p>
-                        <input type="text" name='mobile' title='mobile' onChange={updateUserData} />
+                        <input type="text" name='mobile' title='mobile' placeholder='Escribe tu teléfono' onChange={updateUserData} />
                     </div>
                     <div className="inputBlock">
-                        <p>Direccion:</p>
-                        <input type="text" name='address' title='address' onChange={updateUserData} />
+                        <p>Dirección:</p>
+                        <input type="text" name='address' title='address' placeholder='Escribe tu dirección' onChange={updateUserData} />
                     </div>
                     <div className="inputBlock">
-                        <p>Nombre Empresa:</p>
-                        <input type="text" name='businessName' title='businessName' onChange={updateUserData} />
+                        <p>Empresa:</p>
+                        <input type="text" name='businessName' title='businessName' placeholder='Nombre de tu empresa' onChange={updateUserData} />
                     </div>
                     <div className="inputBlock">
                         <p>Email:</p>
-                        <input type="text" name='email' title='email' onChange={updateUserData} />
+                        <input type="text" name='email' title='email' placeholder='Escribe tu email' onChange={updateUserData} />
                     </div>
-                    <div className="inputBlock">
-                        <p>Password:</p>
-                        <input type="text" name='password' title='password' onChange={updateUserData} />
-                    </div>
-                    <div className="inputBlock">
-                        <p>Repite la Password:</p>
-                        <input type="text" onChange={e => setPasswordVerification(e.target.value)} />
-                    </div>                    
-                    {/* //Seleccion de role */}
-                    <div className="inputBlock">
-                        <p>Usuario</p>
+                     {/* //Seleccion de role */}
+                     <div className="inputBlock">
+                        <p>Tipo de usuario</p>
                         <select  onChange={e => setRoleSelected(e.target.value)}>
                             <option value="none">Selecciona una opcion</option>
                             <option value="client">Cliente</option>
                             <option value="projectManager">Project Manager</option>
                         </select>
                     </div>                    
+                    <div className="inputBlock">
+                        <p>Contraseña:</p>
+                        <input type="text" name='password' title='password' placeholder='Escoge una constraseña' onChange={updateUserData} />
+                    </div>
+                    <div className="inputBlock">
+                        <p>Repite la contraseña:</p>
+                        <input type="text" placeholder='Repite la constraseña' onChange={e => setPasswordVerification(e.target.value)} />
+                    </div>                    
+                   
                 </div>
                     <div className="messageError">{outputAttempt}</div>
-                    <button onClick={() => registerUser()}>Register</button>
+                    <button className="registerButton" onClick={() => registerUser()}><span>Registrarse</span></button>
             </div>
         </div>
     );

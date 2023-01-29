@@ -57,8 +57,18 @@
     height: 30px;
     background-color: white;
     position: absolute;
-    bottom: 0px;
-    right: 30px;
-    border-top-right-radius: 1em;
-    border-top-left-radius: 1em;
+    bottom: 50px;
+    right: 100px;
+}
+
+.chatsContainer{
+    width: 82%;
+    height: 350px;
+    border: 1px solid blue;
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
 }
