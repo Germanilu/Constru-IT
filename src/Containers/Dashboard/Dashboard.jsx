@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout, userData } from "../../Features/userSlice";
 import "./Dashboard.scss";
-import NewProject from "../Project/NewProject/NewProject";
+import Clients from "../Clients/Clients"
+import ProjectManagers from "../ProjectManagers/ProjectManagers";
 import UserProject from "../Project/UserProject/UserProject";
 import ChatButton from "../../Components/ChatButton/ChatButton";
 import Chat from "../Chat/Chat"
@@ -12,12 +13,12 @@ import ChatWindow from "../../Components/ChatWindow/ChatWindow";
 const Dashboard = () => {
 
   //Hooks
-  const [select,setSelect] = useState("newProject");
+  const [select,setSelect] = useState("");
   const [openChat, setOpenChat] = useState(false)  
   const [openWindow, setOpenWindow] = useState({
     open: false,
-    id: ""
-})
+    chatInfo: ""
+  })
 
   //Const
   const userInfo = useSelector(userData);
@@ -33,14 +34,35 @@ const Dashboard = () => {
     }
   });
 
+  //This function show and hide the chat
   const chatInteraction = () => {
     setOpenChat(!openChat)
   }
 
   //Function send to chat.jsx as prop to set idChast on setOpenWindow Hook
   const selectedChat = (chatId) => {
-    setOpenWindow({open: !openWindow.open, id:chatId})
-    console.log(openWindow)
+    setOpenWindow({open: !openWindow.open, chatInfo:chatId})
+}
+
+//Render different sideBarContainer if user is PM or Client
+const renderDependingOnRole = () => {
+  if(userInfo.user_role  === "63c6963759433440683992f3") {
+    return (
+      <div className="sideBarSelectionContainer">
+            <h2 onClick={() => setSelect("clients")}>Clientes</h2>
+            <h2 onClick={() => setSelect("userProject")}>Mis Proyectos</h2>
+            <h2>Perfil</h2>
+      </div>
+    )
+  }else if (userInfo.user_role === "63c6963759433440683992f2"){
+    return(
+      <div className="sideBarSelectionContainer">
+            <h2 onClick={() => setSelect("projectManager")}>Project Manager</h2>
+            <h2 onClick={() => setSelect("userProject")}>Mis Proyectos</h2>
+            <h2>Perfil</h2>
+      </div>
+    )
+  }
 }
 
   return (
@@ -48,16 +70,14 @@ const Dashboard = () => {
     <button className="logoutButton" onClick={() => dispatch(logout())}>Logout</button>
       <div className="sideBarContainer">
         <div className="sideBarMenu">
-          <div className="sideBarSelectionContainer">
-            <h2 onClick={() => setSelect("newProject")}>Nuevo Proyecto</h2>
-            <h2 onClick={() => setSelect("userProject")}>Mis Proyectos</h2>
-            <h2>Perfil</h2>
-          </div>
+        {renderDependingOnRole()}        
         </div>
         <div className="renderContainer">
             {
-                select === "newProject"? (
-                    <NewProject></NewProject>
+                select === "clients"? (
+                    <Clients></Clients>
+                ):select === "projectManager"? (
+                  <ProjectManagers></ProjectManagers>
                 ): select === "userProject" ? (
                     <UserProject></UserProject>
                 ): null
@@ -74,7 +94,7 @@ const Dashboard = () => {
       <div className="chatsContainer">
         {/* Sending hook to chatWindow with chat info */}
         {
-          openWindow.open?<ChatWindow openWindow={openWindow}></ChatWindow>:null
+          openWindow.open?<ChatWindow openWindow={openWindow} setOpenWindow={setOpenWindow}></ChatWindow>:null
         }
         
         

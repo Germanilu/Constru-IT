@@ -17,6 +17,10 @@ const Chat = ({selectedChat}) => {
         getChat()
     },[])
 
+    useEffect(() => {
+        
+    })
+
     //Get all the available chat for the user
     const getChat = async() => {
         try {
@@ -27,14 +31,13 @@ const Chat = ({selectedChat}) => {
             if(attempt.status === 200){
                 setBusinessChats(attempt.data.data )
                 setWorkerChats(attempt.data.allChatsE)
+                console.log("AQUI",attempt)
             }
             
         } catch (error) {
             console.log(error)
         }
     }
-
-
 
     //If user is PM
     if(userInfo.user_role === "63c6963759433440683992f3"){
@@ -46,7 +49,7 @@ const Chat = ({selectedChat}) => {
                     businessChat.length > 0 && (
                        businessChat.map((e) => {
                             return(
-                                <div className="chatRow" key={e._id} onClick={() => selectedChat(e._id) }>{e.clientName}</div>
+                                <div className="chatRow" key={e._id} onClick={() => selectedChat(e) }>{e.clientName}</div>
                             )
                         })
                     )
@@ -58,7 +61,7 @@ const Chat = ({selectedChat}) => {
                     workerChats.length > 0 && (
                        workerChats.map((e) => {
                             return(
-                                <div className="chatRow" key={e._id}>{e.employeeName}</div>
+                                <div className="chatRow" key={e._id} onClick={() => selectedChat(e) }>{e.employeeName}</div>
                             )
                         })
 
@@ -77,7 +80,7 @@ const Chat = ({selectedChat}) => {
                     businessChat.length > 0 && (
                        businessChat.map((e) => {
                             return(
-                                <div className="chatRow" key={e._id}>{e.projectManagerName}</div>
+                                <div className="chatRow" key={e._id} onClick={() => selectedChat(e) }>{e.projectManagerName}</div>
                             )
                         })
 

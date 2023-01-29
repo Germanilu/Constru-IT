@@ -1,5 +1,96 @@
+@import '../../../global.scss';
 .chatWindowDesign{
-    width: 250px;
+    width: 25%;
     height: 100%;
-    background-color: magenta;
+    background-color: rgb(255, 255, 255);
+}
+
+//Chat Header Design
+.headerChatWindow{
+    width: 100%;
+    height: 15%;
+    @include flex();
+    justify-content: left;
+}
+
+.pictChatWindow{
+    border-radius: 50%;
+    height: 100%;
+    width: 20%;
+}
+
+.nameChatWindow{
+    width: 60%;
+    margin-left: 0.8em;
+}
+
+.closeChatWindow{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+//Body chat Window to show previouse messages
+.bodyChatWindow{
+    width: 100%;
+    height: 55%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    //To enable scroll
+    overflow: scroll;
+    background-color: red;
+}
+.bodyChatWindowResult{
+    width: 100%;
+    height: max-content;
+    // min-height: 80%;
+    @include flex();
+    flex-direction: column;
+    border: 1px solid blue;
+}
+.bodyChatWindowName{
+    width: 100%;
+    height: max-content;
+    background-color: white;
+    margin-top: 1em;
+}
+.bodyChatWindowMessageContainer{
+    width: 100%;
+    height: max-content;
+    @include flex();
+    flex-direction: row-reverse;
+    background-color: green;
+}
+.bodyChatWindowDate{
+    width: 20%;
+    height: max-content;
+    font-size: 0.1em;
+}
+
+
+//Input text to write message in chat
+.inputChatWindow{
+    width: 100%;
+    height: 20%;
+    @include flex()
+}
+
+.inputMessageChatWindow{
+    width: 95%;
+    height: 80%;
+    resize: none;
+}
+
+
+//Footer chat Window
+.footerBarChatWindow{
+    width: 100%;
+    height: 10%;
+    @include flex();
+    justify-content: right;
+}
+
+.buttonFooterBarChatWindow{
+    margin-right: 1em;
 }
