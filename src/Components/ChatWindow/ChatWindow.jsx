@@ -1,38 +1,63 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 import { useSelector } from "react-redux";
 import { userData } from "../../Features/userSlice";
 import axios from "axios";
 import "./ChatWindow.scss"
+
+
 const ChatWindow = ({openWindow, setOpenWindow}) => {
-    console.log(openWindow.chatInfo._id)
 
     const [loadMessage, setLoadMessage] = useState([])
+    const [message, setMessage] = useState({
+        message: ""
+    })
+    console.log(message)
+
     //Const
     const userInfo = useSelector(userData);
-
+    
     useEffect(() => {
         loadMessageInChat()
-    },[]);
-
+    },[loadMessage]); 
+    
     useEffect(() => {
         
     })
+    
+    //Api call to load message
+         const loadMessageInChat = async() => {
+            try {
+                let config = {
+                    headers: { Authorization: `Bearer ${userInfo.token}` }
+                };
+                const attempt = await axios.get(`https://bbobras.onrender.com/api/messages/${openWindow.chatInfo._id}`,config)
+                if(attempt.status === 200){
+                    setLoadMessage(attempt.data.data)
+                }
+            } catch (error) {
+                console.log(error)
+            } 
+        }   
 
-    const loadMessageInChat = async() => {
-        try {
-            let config = {
-                headers: { Authorization: `Bearer ${userInfo.token}` }
-            };
-            const attempt = await axios.get(`https://bbobras.onrender.com/api/messages/${openWindow.chatInfo._id}`,config)
-            if(attempt.status === 200){
-                setLoadMessage(attempt.data.data)
-                console.log(attempt.data.data)
-            }
-        } catch (error) {
-            console.log(error)
+        //Function to update the messageHook
+        const updateMessage = (data) => {
+            setMessage({message: data.currentTarget.value});
         }
-    }
 
+        //Request to post new message in chat
+        const postNewMessage = async() => {
+            try {
+                let config = {
+                    headers: { Authorization: `Bearer ${userInfo.token}` }
+                };
+                const attempt = await axios.post(`https://bbobras.onrender.com/api/newMessage/${openWindow.chatInfo._id}`,message,config)
+                console.log(attempt)
+                if(attempt.status === 200){
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        }
 
     return (
         <div className="chatWindowDesign">
@@ -62,10 +87,10 @@ const ChatWindow = ({openWindow, setOpenWindow}) => {
                 }
             </div>
             <div className="inputChatWindow">
-                <textarea type="text" className="inputMessageChatWindow" placeholder="Escribe un mensaje..."/>
+                <textarea type="text" className="inputMessageChatWindow" placeholder="Escribe un mensaje..." onChange={ (e) => updateMessage(e)}/>
             </div>
             <div className="footerBarChatWindow">
-                <button className="buttonFooterBarChatWindow">Enviar</button>
+                <button className="buttonFooterBarChatWindow" onClick={() => postNewMessage()}>Enviar</button>
             </div>
         </div>
     );
