@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState, useRef} from "react";
 import { useSelector } from "react-redux";
 import { userData } from "../../Features/userSlice";
 import axios from "axios";
@@ -11,34 +11,34 @@ const ChatWindow = ({openWindow, setOpenWindow}) => {
     const [message, setMessage] = useState({
         message: ""
     })
-    console.log(message)
+    const [editMessage,SetEditMessage] = useState(false)
 
     //Const
     const userInfo = useSelector(userData);
+    const messagesEndRef = useRef(null);
     
     useEffect(() => {
-        loadMessageInChat()
+    loadMessageInChat()
     },[loadMessage]); 
     
-    useEffect(() => {
-        
-    })
     
-    //Api call to load message
-         const loadMessageInChat = async() => {
-            try {
-                let config = {
-                    headers: { Authorization: `Bearer ${userInfo.token}` }
-                };
-                const attempt = await axios.get(`https://bbobras.onrender.com/api/messages/${openWindow.chatInfo._id}`,config)
-                if(attempt.status === 200){
-                    setLoadMessage(attempt.data.data)
-                }
-            } catch (error) {
-                console.log(error)
-            } 
-        }   
 
+    //Api call to load message
+    const loadMessageInChat = async() => {
+        try {
+            let config = {
+                headers: { Authorization: `Bearer ${userInfo.token}` }
+            };
+            const attempt = await axios.get(`https://bbobras.onrender.com/api/messages/${openWindow.chatInfo._id}`,config)
+            if(attempt.status === 200){
+               setLoadMessage(attempt.data.data)
+            }
+        } catch (error) {
+            console.log(error)
+        } 
+    }  
+    
+   
         //Function to update the messageHook
         const updateMessage = (data) => {
             setMessage({message: data.currentTarget.value});
@@ -58,6 +58,32 @@ const ChatWindow = ({openWindow, setOpenWindow}) => {
                 console.log(error)
             }
         }
+        
+        //This functino will pass the messageData as a parameter and if the owner of the message is not the one interactin with it, will not enable editing,
+        //otherwise will allow to edit the message
+        const interactWithMessage = (data) => {
+            if(editMessage._id === data._id || data.userId !== userInfo.user_id){
+                SetEditMessage(false)
+            }else{
+                SetEditMessage(data)
+            }
+        }
+
+        //Functino to delete message in chat
+        const deleteMessage = async (messageData) => {
+                try {
+                    let config = {
+                        headers: { Authorization: `Bearer ${userInfo.token}` }
+                    };
+                    const attempt = axios.delete(`https://bbobras.onrender.com/api/message/${messageData._id}`,config)
+                    if(attempt.status === 200){
+                        console.log(attempt.data)
+                    }
+                } catch (error) {
+                    console.log(error)
+                }
+        }
+
 
     return (
         <div className="chatWindowDesign">
@@ -73,18 +99,26 @@ const ChatWindow = ({openWindow, setOpenWindow}) => {
             </div>
             <div className="bodyChatWindow">
                 {
-                    loadMessage.map(e => {
+                    loadMessage.map((e) => {
                         return(
-                            <div className="bodyChatWindowResult" key={e._id}>
+                            <div className="bodyChatWindowResult" key={e._id} onClick={() => interactWithMessage(e)}>
+                               
                                 <div className="bodyChatWindowHeader">
                                     <div className="bodyChatWindowName">{e.userName + " " + e.userSurname}</div>
                                     <div className="bodyChatWindowDate">{e.date}</div>
                                 </div>
                                 <div className="bodyChatWindowMessage">{e.message}</div>
+                                {
+                                    editMessage._id === e._id?
+                                    <div> <button>Edit</button> <button className="deleteMessageButton" onClick={(e) => { e.stopPropagation(); deleteMessage(editMessage)}}>Delete</button></div>
+                                    : false
+                                }
                             </div>
                         );
                     })
                 }
+
+            <div ref={messagesEndRef}></div>
             </div>
             <div className="inputChatWindow">
                 <textarea type="text" className="inputMessageChatWindow" placeholder="Escribe un mensaje..." onChange={ (e) => updateMessage(e)}/>
