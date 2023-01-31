@@ -107,10 +107,12 @@ const ChatWindow = ({openWindow, setOpenWindow}) => {
                                     <div className="bodyChatWindowName">{e.userName + " " + e.userSurname}</div>
                                     <div className="bodyChatWindowDate">{e.date}</div>
                                 </div>
-                                <div className="bodyChatWindowMessage">{e.message}</div>
+                                <div className="bodyChatWindowMessage">
+                                   {e.message}
+                                </div>
                                 {
                                     editMessage._id === e._id?
-                                    <div> <button>Edit</button> <button className="deleteMessageButton" onClick={(e) => { e.stopPropagation(); deleteMessage(editMessage)}}>Delete</button></div>
+                                    <div><button className="deleteMessageButton" onClick={(e) => { e.stopPropagation(); deleteMessage(editMessage)}}>Borrar</button></div>
                                     : false
                                 }
                             </div>
