@@ -1,0 +1,61 @@
+.clientsDesign {
+    outline: 1px solid red;
+    height: 100%;
+    background-color: #2f2f2f;
+    font-family: 'Prompt';
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr; 
+    gap: 20px;
+    padding: 30px; 
+    overflow: scroll;
+    text-align: center;
+}
+
+.cardData{
+   
+}
+
+.clientsCards {
+    font-family: 'Prompt';
+    background-color: grey;
+    border-radius: 10px; 
+}
+
+.cardInfo{
+  display: flex;
+  align-self: start;
+  margin: 0 auto;
+}
+
+img {
+    width: 50%;
+    
+}
+
+/* Barra scroll*/
+
+.clientsDesign::-webkit-scrollbar {
+    -webkit-appearance: none; 
+}
+
+.clientsDesign::-webkit-scrollbar:vertical {
+    width:15px;
+}
+
+.clientsDesign::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+    display: none;   
+}
+
+.clientsDesign::-webkit-scrollbar-thumb {
+    background-color: #eae600;
+    border: 4px solid #2f2f2f;
+    border-radius: 20px;
+}
+
+.clientsDesign::-webkit-scrollbar-track {
+    border-radius: 10px;  
+}
+
+
+

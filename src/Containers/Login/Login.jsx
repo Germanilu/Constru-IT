@@ -54,6 +54,7 @@ const Login = () => {
             <input type="text" name="password" title="password" placeholder="Contraseña" onChange={updateCredentials} />
             {outputAttempt}
             <button className="login-home btn1" type="submit" onClick={() => attemptLogin()}><span>Ingresar</span></button>
+            <h4 className="registerLink">¿No tienes cuenta? Regístrate <a href="register">Aquí</a></h4>
             </div>
         </section>
     );
