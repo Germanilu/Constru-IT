@@ -1,3 +1,28 @@
+.clientsPage {
+    height: 100%;
+    background-color: #2f2f2f;
+    font-family: 'Prompt';
+}
+
+.clientsPage input {
+    height: 40px;
+    font-family: 'Prompt';
+    color: #fff;
+    font-size: 20px;
+    margin: 20px;
+    width: 60%;
+    border-radius: 5px;
+    background-color: #2f2f2f;
+    border: 3px solid rgb(255, 242, 0);
+    transition: .3s;
+    outline: none; 
+}
+
+
+.clientsPage input:hover {
+    background-color: rgb(77, 77, 77);
+}
+
 .clientsDesign {
     outline: 1px solid red;
     height: 100%;
@@ -53,7 +78,7 @@ img {
     border-radius: 20px;
 }
 
-.clientsDesign::-webkit-scrollbar-track {
+.clientsDesigne::-webkit-scrollbar-track {
     border-radius: 10px;  
 }
 
