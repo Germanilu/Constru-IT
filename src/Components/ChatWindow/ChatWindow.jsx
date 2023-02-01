@@ -28,8 +28,7 @@ const ChatWindow = ({openWindow, setOpenWindow}) => {
         messagesEndRef.current?.scrollIntoView()
     },[focus])
 
-    
-    
+
 
     //Api call to load message
     const loadMessageInChat = async() => {

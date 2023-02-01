@@ -9,6 +9,7 @@ import UserProject from "../Project/UserProject/UserProject";
 import ChatButton from "../../Components/ChatButton/ChatButton";
 import Chat from "../Chat/Chat"
 import ChatWindow from "../../Components/ChatWindow/ChatWindow";
+import Profile from "../Profile/Profile"
 
 const Dashboard = () => {
 
@@ -51,7 +52,7 @@ const renderDependingOnRole = () => {
       <div className="sideBarSelectionContainer">
             <h2 onClick={() => setSelect("clients")}>Clientes</h2>
             <h2 onClick={() => setSelect("userProject")}>Mis Proyectos</h2>
-            <h2>Perfil</h2>
+            <h2 onClick={() => setSelect("profile")}>Perfil</h2>
       </div>
     )
   }else if (userInfo.user_role === "63c6963759433440683992f2"){
@@ -59,7 +60,7 @@ const renderDependingOnRole = () => {
       <div className="sideBarSelectionContainer">
             <h2 onClick={() => setSelect("projectManager")}>Project Manager</h2>
             <h2 onClick={() => setSelect("userProject")}>Mis Proyectos</h2>
-            <h2>Perfil</h2>
+            <h2 onClick={() => setSelect("profile")}>Perfil</h2>
       </div>
     )
   }
@@ -80,6 +81,8 @@ const renderDependingOnRole = () => {
                   <ProjectManagers></ProjectManagers>
                 ): select === "userProject" ? (
                     <UserProject></UserProject>
+                ): select === "profile"? (
+                    <Profile></Profile>
                 ): null
             }
         </div>

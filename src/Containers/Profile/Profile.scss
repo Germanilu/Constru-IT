@@ -1,0 +1,32 @@
+.profileDesign{
+    width: 100%;
+    height: 100%;
+    background-color: green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.containerProfile{
+    width: 60%;
+    height: 90%;
+    border: 1px solid black;
+}
+
+.profileInfo{
+    width: 100%;
+    height: 100%;
+    border: 1px solid green;
+    display: flex;
+}
+.profileData{
+    width: 100%;
+    height: 50%;
+    border: 1px solid red;
+}
+
+.profileSensibleData{
+    width: 100%;
+    height: 50%;
+    border: 1px solid blue;
+}
