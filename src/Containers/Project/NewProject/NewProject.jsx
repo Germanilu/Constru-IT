@@ -4,6 +4,9 @@ const NewProject = () => {
     return(
         <div className="newProjectDesign">
             NewProject
+
+            
+
         </div>
     )
 }

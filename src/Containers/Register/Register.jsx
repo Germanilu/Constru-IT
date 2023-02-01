@@ -96,7 +96,7 @@ const Register = () => {
     }
 
     return(
-        <div className='registerDesign'>
+        <div className='registerDesign' id='register'>
             <div className="registerImg"></div>
             <div className="registerBlock">
                 <div className="registerInput">

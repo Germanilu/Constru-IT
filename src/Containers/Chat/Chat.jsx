@@ -48,7 +48,7 @@ const Chat = ({selectedChat}) => {
             {
                     businessChat.length > 0 && (
                        businessChat.map((e) => {
-                            return(
+                            return( 
                                 <div className="chatRow" key={e._id} onClick={() => selectedChat(e) }>{e.clientName}</div>
                             )
                         })
