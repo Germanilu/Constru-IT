@@ -12,14 +12,22 @@ const ChatWindow = ({openWindow, setOpenWindow}) => {
         message: ""
     })
     const [editMessage,SetEditMessage] = useState(false)
-
+    const [focus,setFocus] = useState("")
+    
     //Const
     const userInfo = useSelector(userData);
     const messagesEndRef = useRef(null);
+
     
     useEffect(() => {
     loadMessageInChat()
-    },[loadMessage]); 
+    },[]); 
+
+    //This useEffect will scroll into view if new message inc hat
+    useEffect(() => {
+        messagesEndRef.current?.scrollIntoView()
+    },[focus])
+
     
     
 
@@ -29,10 +37,21 @@ const ChatWindow = ({openWindow, setOpenWindow}) => {
             let config = {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             };
-            const attempt = await axios.get(`https://bbobras.onrender.com/api/messages/${openWindow.chatInfo._id}`,config)
-            if(attempt.status === 200){
-               setLoadMessage(attempt.data.data)
+            //Filter between 2 chats model
+            if(openWindow.chatInfo.EmployeeId){
+                const attempt = await axios.get(`https://bbobras.onrender.com/api/messagesChat/${openWindow.chatInfo._id}`,config)
+                if(attempt.status === 200){
+                    setLoadMessage(attempt.data.data)
+                }
+            }else{
+                const attempt = await axios.get(`https://bbobras.onrender.com/api/messages/${openWindow.chatInfo._id}`,config)
+                if(attempt.status === 200){
+                    setLoadMessage(attempt.data.data)
+                    setFocus(loadMessage[loadMessage.length -1]._id)
+                 }
             }
+             
+            
         } catch (error) {
             console.log(error)
         } 
@@ -50,9 +69,18 @@ const ChatWindow = ({openWindow, setOpenWindow}) => {
                 let config = {
                     headers: { Authorization: `Bearer ${userInfo.token}` }
                 };
-                const attempt = await axios.post(`https://bbobras.onrender.com/api/newMessage/${openWindow.chatInfo._id}`,message,config)
-                console.log(attempt)
-                if(attempt.status === 200){
+                if(openWindow.chatInfo.EmployeeId){
+                    const attempt = await axios.post(`https://bbobras.onrender.com/api/newMessageTo/${openWindow.chatInfo._id}`,message,config)
+                    if(attempt.status === 200){
+                        console.log("mensaje enviado")
+                        loadMessageInChat()
+                    }
+                }else{
+                    const attempt = await axios.post(`https://bbobras.onrender.com/api/newMessage/${openWindow.chatInfo._id}`,message,config)
+                    if(attempt.status === 200){
+                        console.log("mensaje enviado")
+                        loadMessageInChat()
+                    }
                 }
             } catch (error) {
                 console.log(error)
@@ -69,21 +97,23 @@ const ChatWindow = ({openWindow, setOpenWindow}) => {
             }
         }
 
-        //Functino to delete message in chat
+        //Function to delete message in chat
         const deleteMessage = async (messageData) => {
                 try {
                     let config = {
                         headers: { Authorization: `Bearer ${userInfo.token}` }
                     };
-                    const attempt = axios.delete(`https://bbobras.onrender.com/api/message/${messageData._id}`,config)
+                    console.log(messageData._id)
+                    const attempt = await axios.delete(`https://bbobras.onrender.com/api/message/${messageData._id}`,config)
+                    
                     if(attempt.status === 200){
                         console.log(attempt.data)
+                        loadMessageInChat()
                     }
                 } catch (error) {
                     console.log(error)
                 }
         }
-
 
     return (
         <div className="chatWindowDesign">
