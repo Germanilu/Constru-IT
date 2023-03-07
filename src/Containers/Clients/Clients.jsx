@@ -60,15 +60,18 @@ const Clients = () => {
 
                                 <div className="userImg">
                                     <img src={profileImg} alt="" />
-                                    <div className="barProfile"></div>
+                                    <div className="cardInfo"><h3>{e.name}</h3></div>
+                                    <div className="newProjectButton">+</div>
                                 </div>
+
+                                <div className="barProfile"></div>
                                 
-                                <div >
-                                <div className="cardInfo"><h3>{e.name}</h3></div>
-                                <div className="cardInfo"><h4>NIF:</h4><p>{e.nif}</p></div>
-                                <div className="cardInfo"><h4>Phone:</h4><p>{e.phone}</p></div>
-                                <div className="cardInfo"><h4>Address:</h4><p>{e.address}</p></div>
-                                <div className="cardInfo"><h4>Email:</h4><p>{e.email}</p></div>
+                                <div className="cardInfo" >
+                                
+                                <div><h4>NIF:</h4><p>{e.nif}</p></div>
+                                <div><h4>Phone:</h4><p>{e.phone}</p></div>
+                                <div><h4>Address:</h4><p>{e.address}</p></div>
+                                <div><h4>Email:</h4><p>{e.email}</p></div>
 
                                 </div>
                             </div>

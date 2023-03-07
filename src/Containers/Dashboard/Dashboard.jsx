@@ -68,7 +68,11 @@ const renderDependingOnRole = () => {
 
   return (
     <div className="dashboardDesign">
-    <button className="logoutButton" onClick={() => dispatch(logout())}>Logout</button>
+    <div className="navbarDashboard">
+      <h1>Bienvenido User Name</h1>
+      <button className="logoutButton" onClick={() => dispatch(logout())}><span>Logout</span></button>
+    </div>
+    
       <div className="sideBarContainer">
         <div className="sideBarMenu">
         {renderDependingOnRole()}        
@@ -86,8 +90,8 @@ const renderDependingOnRole = () => {
                 ): null
             }
         </div>
-      </div>
-      <div className="chatComponentContaine">
+        <div className="chatComponents">
+        <div className="chatComponentContaine">
         {
           openChat?<Chat selectedChat={selectedChat}/>:null
         }
@@ -100,6 +104,9 @@ const renderDependingOnRole = () => {
           openWindow.open?<ChatWindow openWindow={openWindow} setOpenWindow={setOpenWindow}></ChatWindow>:null
         }
       </div>
+        </div>
+      </div>
+      
     </div>
   );
 };

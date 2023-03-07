@@ -1,18 +1,20 @@
 .clientsPage {
     height: 100%;
-    background-color: #2f2f2f;
+    background-color: #353535;
     font-family: 'Prompt';
+    // border-radius: 20px;
+    
 }
 
 .clientsPage input {
-    height: 40px;
+    height:     40px;
     font-family: 'Prompt';
-    color: #fff;
     font-size: 20px;
     margin: 20px;
     width: 60%;
-    border-radius: 5px;
-    background-color: #2f2f2f;
+    border-radius: 25px;
+    color: #3a3a3a;
+    background-color: #353535;
     border: 3px solid rgb(255, 242, 0);
     transition: .3s;
     outline: none; 
@@ -20,21 +22,16 @@
 
 
 .clientsPage input:hover {
-    background-color: rgb(77, 77, 77);
+    background-color: #aeaeae;
 }
 
 .clientsDesign {
-    outline: 1px solid red;
-    height: 100%;
-    background-color: #2f2f2f;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 85%;
+    background-color: #353535;
     font-family: 'Prompt';
-    display: grid; 
-    grid-template-columns: 1fr 1fr 1fr; 
-    grid-template-rows: 1fr; 
-    gap: 20px;
-    padding: 30px; 
     overflow: scroll;
-    text-align: center;
 }
 
 .cardData{
@@ -43,19 +40,48 @@
 
 .clientsCards {
     font-family: 'Prompt';
-    background-color: grey;
-    border-radius: 10px; 
+    background-color: #575757;
+    margin: 10px;
+    -webkit-box-shadow: 12px 10px 35px -3px rgba(39, 39, 39, 0.75);
+    -moz-box-shadow: 12px 10px 35px -3px rgba(39, 39, 39, 0.75);
+    box-shadow: 12px 10px 35px -3px rgba(39, 39, 39, 0.75);
 }
 
 .cardInfo{
   display: flex;
-  align-self: start;
-  margin: 0 auto;
+  flex-direction: column;
+  margin: 15px;
+  color:rgb(211, 211, 211)
+}
+
+.cardInfo div{
+    display: flex;
+  }
+
+.userImg {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
 }
 
 img {
-    width: 50%;
+    width: 35%;
+    margin: 0px;
     
+}
+
+.barProfile {
+    margin: 0 auto;
+    width: 80%;
+    height: 5px;
+    background-color: #baa800;
+}
+
+.newProjectButton {
+ font-size: 100px;
+ transform: translateY(-30px);
+ color: #baa800;
 }
 
 /* Barra scroll*/
